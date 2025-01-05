@@ -10,7 +10,7 @@ const server = http.createServer((req, res) => {
   } else if (pathName === "/product") {
     res.end("This is the product");
   } else {
-    res.end("Hello World");
+    res.end("Page not found");
   }
 });
 
