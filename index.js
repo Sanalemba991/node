@@ -1,9 +1,17 @@
 const http = require("http");
-const url=require('url');
 
 const server = http.createServer((req, res) => {
-console.log(req.url);//url utpa
-  res.end("Hello World");
+  console.log(req.url);
+
+  const pathName = req.url;
+
+  if (pathName === "/" || pathName === "/overview") {
+    res.end("This is the overview");
+  } else if (pathName === "/product") {
+    res.end("This is the product");
+  } else {
+    res.end("Hello World");
+  }
 });
 
 server.listen(3000, "127.0.0.1", () => {
