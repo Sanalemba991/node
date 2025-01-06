@@ -20,5 +20,8 @@ fs.readFile("test-file.txt", () => {
   setImmediate(() => {
     console.log("setImmediate 2");
   });
+  process.nextTick(() => {
+    console.log("Callback function is okay");
+  });
 });
 console.log("Hello from the top-level code");
