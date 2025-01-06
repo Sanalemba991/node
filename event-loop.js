@@ -1,47 +1,13 @@
-const fs = require("fs");
-const crypto = require("crypto");
-const start = Date.now();
-process.env.UV_THREADPOOL_SIZE = 1;
+const EventEmitter = require("events");
 
-console.log("Hello from the top-level code");
+const myEmitter = new EventEmitter();
 
-setTimeout(() => {
-  console.log("setTimeout 1");
-}, 0);
-
-setImmediate(() => {
-  console.log("setImmediate 1");
+myEmitter.on("newSale", () => {
+  console.log("There was a new sale!");
 });
 
-fs.readFile("test-file.txt", () => {
-  console.log("I/O finished");
-  console.log("-------------------");
-
-  setTimeout(() => {
-    console.log("setTimeout 2");
-  }, 0);
-
-  setTimeout(() => {
-    console.log("setTimeout 3");
-  }, 3000);
-
-  setImmediate(() => {
-    console.log("setImmediate 2");
-  });
-
-  process.nextTick(() => {
-
-    crypto.pbkdf2("password", "salt", 100000, 1024, "sha512", () => {
-      console.log(Date.now() - start, "Password  encrypted");
-    });
-    crypto.pbkdf2("password", "salt", 100000, 1024, "sha512", () => {
-      console.log(Date.now() - start, "Password  encrypted");
-    });
-    crypto.pbkdf2("password", "salt", 100000, 1024, "sha512", () => {
-      console.log(Date.now() - start, "Password  encrypted");
-    });
-    crypto.pbkdf2("password", "salt", 100000, 1024, "sha512", () => {
-      console.log(Date.now() - start, "Password  encrypted");
-    });
-  });
+myEmitter.on("newSale", () => {
+  console.log("Customer name: Jonas");
 });
+
+myEmitter.emit("newSale");
