@@ -1,17 +1,35 @@
-const EventEmitter = require("events");
+// const EventEmitter = require("events");
 
-const myEmitter = new EventEmitter();
+// const myEmitter = new EventEmitter();
 
-myEmitter.on("newSale", () => {
-  console.log("There was a new sale!");
+// myEmitter.on("newSale", () => {
+//   console.log("There was a new sale!");
+// });
+
+// myEmitter.on("newSale", () => {
+//   console.log("Customer name: Jonas");
+// });
+
+// myEmitter.on("newSale", stock => {
+//   console.log(`There are now ${stock} items left in stock.`);
+// });
+
+// myEmitter.emit("newSale",9);
+
+const http = require("http");
+const server = http.createServer();
+
+server.on("request", (req, res) => {
+  console.log("Request received!");
+  console.log(req.url);
+  res.end("Request received");
 });
 
-myEmitter.on("newSale", () => {
-  console.log("Customer name: Jonas");
+
+server.on("close", () => {
+  console.log("Server Close");
 });
 
-myEmitter.on("newSale", stock => {
-  console.log(`There are now ${stock} items left in stock.`);
+server.listen(3000, "127.0.0.1", () => {
+  console.log("Waiting for requests...");
 });
-
-myEmitter.emit("newSale",9);
