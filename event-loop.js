@@ -1,7 +1,7 @@
 const fs = require("fs");
 const crypto = require("crypto");
 const start = Date.now();
-
+process.env.UV_THREADPOOL_SIZE = 1;
 
 console.log("Hello from the top-level code");
 
