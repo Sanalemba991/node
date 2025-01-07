@@ -8,6 +8,10 @@ app.get("/", (req, res) => {
     .json({ message: "Hello from the server side", app: "Natours" });
 });
 
+app.post("/", (req, res) => {
+  res.send("You can post to this endpoint...");
+});
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
